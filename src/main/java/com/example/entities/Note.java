@@ -1,25 +1,32 @@
 package com.example.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import lombok.Data;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
-@Data
+@Table(name = "notes")
+@Getter
+@Setter
 public class Note {
 
     @Column
-    String id;
+    @Id
+    @GeneratedValue
+    private String id;
 
     @Column
-    String title;
+    @NotBlank
+    private String title;
 
     @Column
-    String content;
+    private String content;
 
     @Column
-    String createdAt;
+    @NotBlank
+    private String createdAt;
 
     @Column
-    String updatedAt;
+    private String updatedAt;
 }
