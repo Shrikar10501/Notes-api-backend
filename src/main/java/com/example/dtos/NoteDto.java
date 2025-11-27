@@ -1,14 +1,10 @@
 package com.example.dtos;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.time.LocalDate;
 
 @Data
-@Getter
-@Setter
 public class NoteDto {
 
     Long id;
@@ -17,18 +13,20 @@ public class NoteDto {
     String createdAt;
     String updatedAt;
 
+    // No-argument constructor for Spring/Jackson
+    public NoteDto() {}
+
     public NoteDto(Long id, String title, String content) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.updatedAt = LocalDate.now().toString();
     }
-
-    public NoteDto(Long id, String title, String content , String createdAt) {
+    public NoteDto(Long id, String title, String content , String createdAt,String updatedAt) {
         this.id = id;
         this.title = title;
         this.content = content;
-        this.createdAt = LocalDate.now().toString();
-        this.updatedAt = LocalDate.now().toString();
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 }

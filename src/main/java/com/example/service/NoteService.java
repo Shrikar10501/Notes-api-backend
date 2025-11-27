@@ -5,6 +5,7 @@ import com.example.entities.Note;
 import com.example.repositories.NoteRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,7 +31,8 @@ public class NoteService {
                 note.getId(),
                 note.getTitle(),
                 note.getContent(),
-                note.getCreatedAt()
+                note.getCreatedAt(),
+                note.getUpdatedAt()
         );
     }
 
@@ -39,8 +41,8 @@ public class NoteService {
         Note note = new Note();
         note.setTitle(dto.getTitle());
         note.setContent(dto.getContent());
-        note.setCreatedAt(dto.getCreatedAt());
-        note.setUpdatedAt(dto.getUpdatedAt());
+        note.setCreatedAt(LocalDate.now().toString());
+        note.setUpdatedAt(LocalDate.now().toString());
         return note;
     }
 
@@ -48,7 +50,7 @@ public class NoteService {
         return noteRepository.findAll().stream().map(this::toDto).toList();
     }
 
-    public NoteDto getNoteById(String id) {
+    public NoteDto getNoteById(Long id) {
         Optional<Note> note = noteRepository.findById(id);
         return note.map(this::toDto).orElse(null);
     }
@@ -59,20 +61,20 @@ public class NoteService {
         return toDtoCreated(saved);
     }
 
-    public NoteDto updateNote(String id, NoteDto noteDto) {
+    public NoteDto updateNote(Long id, NoteDto noteDto) {
         Optional<Note> existing = noteRepository.findById(id);
         if (existing.isPresent()) {
             Note note = existing.get();
             note.setTitle(noteDto.getTitle());
             note.setContent(noteDto.getContent());
-            note.setUpdatedAt(noteDto.getUpdatedAt());
+            note.setUpdatedAt(LocalDate.now().toString());
             Note saved = noteRepository.save(note);
             return toDto(saved);
         }
         return null;
     }
 
-    public boolean deleteNote(String id) {
+    public boolean deleteNote(Long id) {
         if (noteRepository.existsById(id)) {
             noteRepository.deleteById(id);
             return true;
