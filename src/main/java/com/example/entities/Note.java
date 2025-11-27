@@ -13,20 +13,18 @@ public class Note {
 
     @Column
     @Id
-    @GeneratedValue
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @Column
-    @NotBlank
+    @Column(nullable = false)
     private String title;
 
-    @Column
+    @Column(nullable = false)
     private String content;
 
-    @Column
-    @NotBlank
+    @Column(nullable = false)
     private String createdAt;
 
-    @Column
+    @Column(nullable = false)
     private String updatedAt;
 }

@@ -37,7 +37,6 @@ public class NoteService {
     // Convert NoteDto to Note
     private Note toEntity(NoteDto dto) {
         Note note = new Note();
-        note.setId(dto.getId());
         note.setTitle(dto.getTitle());
         note.setContent(dto.getContent());
         note.setCreatedAt(dto.getCreatedAt());

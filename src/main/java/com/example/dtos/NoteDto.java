@@ -11,20 +11,20 @@ import java.time.LocalDate;
 @Setter
 public class NoteDto {
 
-    String id;
+    Long id;
     String title;
     String content;
     String createdAt;
     String updatedAt;
 
-    public NoteDto(String id, String title, String content) {
+    public NoteDto(Long id, String title, String content) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.updatedAt = LocalDate.now().toString();
     }
 
-    public NoteDto(String id, String title, String content , String createdAt) {
+    public NoteDto(Long id, String title, String content , String createdAt) {
         this.id = id;
         this.title = title;
         this.content = content;
